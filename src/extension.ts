@@ -49,8 +49,74 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  const tableInlineCommand = vscode.commands.registerTextEditorCommand(
-    "markdown-commands.createTableInline",
+  const orderedListCommand = vscode.commands.registerCommand(
+    "markdown-commands.createOrderedList",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const items = await vscode.window.showInputBox({
+        prompt: "Enter number of items",
+        placeHolder: "e.g., 5",
+      });
+
+      if (!items) return;
+
+      const numItems = parseInt(items);
+
+      if (isNaN(numItems) || numItems <= 0) {
+        vscode.window.showErrorMessage(
+          "Please enter a valid positive number for items"
+        );
+        return;
+      }
+
+      const list = generateOrderedList(numItems);
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, list);
+      });
+    }
+  );
+
+  const unorderedListCommand = vscode.commands.registerCommand(
+    "markdown-commands.createUnorderedList",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const items = await vscode.window.showInputBox({
+        prompt: "Enter number of items",
+        placeHolder: "e.g., 5",
+      });
+
+      if (!items) return;
+
+      const numItems = parseInt(items);
+
+      if (isNaN(numItems) || numItems <= 0) {
+        vscode.window.showErrorMessage(
+          "Please enter a valid positive number for items"
+        );
+        return;
+      }
+
+      const list = generateUnorderedList(numItems);
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, list);
+      });
+    }
+  );
+
+  const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
+    "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
       const document = textEditor.document;
 
@@ -64,6 +130,8 @@ export function activate(context: vscode.ExtensionContext) {
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         const tableMatch = line.match(/^\/table\s+(\d+)\s+(\d+)$/);
+        const olistMatch = line.match(/^\/olist\s+(\d+)$/);
+        const ulistMatch = line.match(/^\/ulist\s+(\d+)$/);
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -81,6 +149,28 @@ export function activate(context: vscode.ExtensionContext) {
             const range = new vscode.Range(position, endPosition);
 
             edit.replace(range, table);
+          }
+        } else if (olistMatch) {
+          const numItems = parseInt(olistMatch[1]);
+
+          if (!isNaN(numItems) && numItems > 0) {
+            const list = generateOrderedList(numItems);
+            const position = new vscode.Position(i, 0);
+            const endPosition = new vscode.Position(i, line.length);
+            const range = new vscode.Range(position, endPosition);
+
+            edit.replace(range, list);
+          }
+        } else if (ulistMatch) {
+          const numItems = parseInt(ulistMatch[1]);
+
+          if (!isNaN(numItems) && numItems > 0) {
+            const list = generateUnorderedList(numItems);
+            const position = new vscode.Position(i, 0);
+            const endPosition = new vscode.Position(i, line.length);
+            const range = new vscode.Range(position, endPosition);
+
+            edit.replace(range, list);
           }
         }
       }
@@ -113,17 +203,37 @@ export function activate(context: vscode.ExtensionContext) {
     return table;
   }
 
+  function generateOrderedList(items: number): string {
+    let list = "";
+    for (let i = 1; i <= items; i++) {
+      list += `${i}. Item ${i}\n`;
+    }
+    return list;
+  }
+
+  function generateUnorderedList(items: number): string {
+    let list = "";
+    for (let i = 1; i <= items; i++) {
+      list += `- Item ${i}\n`;
+    }
+    return list;
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (event.document.languageId === "markdown") {
-        vscode.commands.executeCommand("markdown-commands.createTableInline");
+        vscode.commands.executeCommand(
+          "markdown-commands.inlineCommandProcessor"
+        );
       }
     }
   );
 
   context.subscriptions.push(
     tableCommand,
-    tableInlineCommand,
+    orderedListCommand,
+    unorderedListCommand,
+    inlineCommandProcessor,
     changeDocumentSubscription
   );
 }
