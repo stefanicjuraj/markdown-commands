@@ -7,6 +7,7 @@ An extension for enhanced Markdown format editing with utility commands.
 - Create and insert [tables](#tables) with a simple command
 - Create and insert [ordered lists](#ordered-lists) with a specified number of items
 - Create and insert [unordered lists](#unordered-lists) with a specified number of items
+- Create and insert [horizontal rules](#horizontal-rule)
 
 ## Usage
 
@@ -48,6 +49,16 @@ An extension for enhanced Markdown format editing with utility commands.
 - Item 1
 - Item 2
 - Item 3
+```
+
+### Horizontal Rule
+
+1. Use the slash command: `/hr`
+   - You can also use the `Ctrl+Shift+H` (Windows/Linux) / `Cmd+Shift+H` (macOS) shortcuts, or run the command `Markdown: Insert Horizontal Rule` from the command palette.
+2. A horizontal rule will be inserted at cursor position.
+
+```
+---
 ```
 
 ## Installation
