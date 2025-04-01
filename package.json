@@ -2,7 +2,7 @@
   "name": "md-commands",
   "displayName": "markdown-commands",
   "description": "An extension for enhanced Markdown format editing with utility commands.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "jurajstefanic",
   "repository": {
     "type": "git",
@@ -32,6 +32,10 @@
       {
         "command": "markdown-commands.createUnorderedList",
         "title": "Markdown: Create Unordered List"
+      },
+      {
+        "command": "markdown-commands.createHorizontalRule",
+        "title": "Markdown: Insert Horizontal Rule"
       }
     ],
     "keybindings": [
@@ -51,6 +55,12 @@
         "command": "markdown-commands.createUnorderedList",
         "key": "ctrl+shift+u",
         "mac": "cmd+shift+u",
+        "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
+        "command": "markdown-commands.createHorizontalRule",
+        "key": "ctrl+shift+h",
+        "mac": "cmd+shift+h",
         "when": "editorTextFocus && editorLangId == markdown"
       }
     ]
