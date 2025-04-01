@@ -3,6 +3,12 @@
   "displayName": "markdown-commands",
   "description": "markdown commands",
   "version": "0.0.1",
+  "publisher": "jurajstefanic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanicjuraj/markdown-commands"
+  },
+  "license": "MIT",
   "engines": {
     "vscode": "^1.96.0"
   },
