@@ -115,6 +115,23 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const horizontalRuleCommand = vscode.commands.registerCommand(
+    "markdown-commands.createHorizontalRule",
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const hr = generateHorizontalRule();
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, hr);
+      });
+    }
+  );
+
   const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
     "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
@@ -132,6 +149,7 @@ export function activate(context: vscode.ExtensionContext) {
         const tableMatch = line.match(/^\/table\s+(\d+)\s+(\d+)$/);
         const olistMatch = line.match(/^\/olist\s+(\d+)$/);
         const ulistMatch = line.match(/^\/ulist\s+(\d+)$/);
+        const hrMatch = line.match(/^\/hr$/);
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -172,6 +190,13 @@ export function activate(context: vscode.ExtensionContext) {
 
             edit.replace(range, list);
           }
+        } else if (hrMatch) {
+          const hr = generateHorizontalRule();
+          const position = new vscode.Position(i, 0);
+          const endPosition = new vscode.Position(i, line.length);
+          const range = new vscode.Range(position, endPosition);
+
+          edit.replace(range, hr);
         }
       }
     }
@@ -219,6 +244,10 @@ export function activate(context: vscode.ExtensionContext) {
     return list;
   }
 
+  function generateHorizontalRule(): string {
+    return "---\n";
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (event.document.languageId === "markdown") {
@@ -233,6 +262,7 @@ export function activate(context: vscode.ExtensionContext) {
     tableCommand,
     orderedListCommand,
     unorderedListCommand,
+    horizontalRuleCommand,
     inlineCommandProcessor,
     changeDocumentSubscription
   );
