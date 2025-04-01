@@ -1,8 +1,8 @@
 {
   "name": "md-commands",
   "displayName": "markdown-commands",
-  "description": "markdown commands",
-  "version": "0.0.1",
+  "description": "An extension for enhanced Markdown format editing with utility commands.",
+  "version": "0.0.2",
   "publisher": "jurajstefanic",
   "repository": {
     "type": "git",
