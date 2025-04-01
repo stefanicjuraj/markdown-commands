@@ -1,8 +1,8 @@
 {
   "name": "markdown-commands",
   "displayName": "markdown-commands",
-  "description": "",
-  "version": "0.0.0",
+  "description": "markdown commands",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -16,16 +16,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "",
-        "title": ""
+        "command": "markdown-commands.createTable",
+        "title": "Markdown: Create Table"
       }
     ],
     "keybindings": [
       {
-        "command": "",
-        "key": "",
-        "mac": "",
-        "when": ""
+        "command": "markdown-commands.createTable",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus && editorLangId == markdown"
       }
     ]
   },
