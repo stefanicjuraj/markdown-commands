@@ -2,7 +2,7 @@
   "name": "md-commands",
   "displayName": "markdown-commands",
   "description": "An extension for enhanced Markdown format editing with utility commands.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "jurajstefanic",
   "repository": {
     "type": "git",
@@ -40,6 +40,10 @@
       {
         "command": "markdown-commands.createHyperlink",
         "title": "Markdown: Insert Hyperlink"
+      },
+      {
+        "command": "markdown-commands.createImage",
+        "title": "Markdown: Insert Image"
       }
     ],
     "keybindings": [
@@ -71,6 +75,12 @@
         "command": "markdown-commands.createHyperlink",
         "key": "ctrl+shift+l",
         "mac": "cmd+shift+l",
+        "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
+        "command": "markdown-commands.createImage",
+        "key": "ctrl+shift+i",
+        "mac": "cmd+shift+i",
         "when": "editorTextFocus && editorLangId == markdown"
       }
     ]
