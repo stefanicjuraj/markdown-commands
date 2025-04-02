@@ -132,6 +132,37 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const hyperlinkCommand = vscode.commands.registerCommand(
+    "markdown-commands.createHyperlink",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const title = await vscode.window.showInputBox({
+        prompt: "Enter link title",
+        placeHolder: "e.g., Google",
+      });
+
+      if (!title) return;
+
+      const url = await vscode.window.showInputBox({
+        prompt: "Enter URL",
+        placeHolder: "e.g., https://www.example.com",
+      });
+
+      if (!url) return;
+
+      const link = generateHyperlink(title, url);
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, link);
+      });
+    }
+  );
+
   const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
     "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
@@ -150,6 +181,7 @@ export function activate(context: vscode.ExtensionContext) {
         const olistMatch = line.match(/^\/olist\s+(\d+)$/);
         const ulistMatch = line.match(/^\/ulist\s+(\d+)$/);
         const hrMatch = line.match(/^\/hr$/);
+        const linkMatch = line.match(/^\/link$/);
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -197,6 +229,13 @@ export function activate(context: vscode.ExtensionContext) {
           const range = new vscode.Range(position, endPosition);
 
           edit.replace(range, hr);
+        } else if (linkMatch) {
+          const link = generateHyperlink("Link Text", "https://example.com");
+          const position = new vscode.Position(i, 0);
+          const endPosition = new vscode.Position(i, line.length);
+          const range = new vscode.Range(position, endPosition);
+
+          edit.replace(range, link);
         }
       }
     }
@@ -248,6 +287,10 @@ export function activate(context: vscode.ExtensionContext) {
     return "---\n";
   }
 
+  function generateHyperlink(title: string, url: string): string {
+    return `[${title}](${url})`;
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (event.document.languageId === "markdown") {
@@ -263,6 +306,7 @@ export function activate(context: vscode.ExtensionContext) {
     orderedListCommand,
     unorderedListCommand,
     horizontalRuleCommand,
+    hyperlinkCommand,
     inlineCommandProcessor,
     changeDocumentSubscription
   );
