@@ -163,6 +163,37 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const imageCommand = vscode.commands.registerCommand(
+    "markdown-commands.createImage",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const altText = await vscode.window.showInputBox({
+        prompt: "Enter image alt text",
+        placeHolder: "e.g., A beautiful sunset",
+      });
+
+      if (!altText) return;
+
+      const imageUrl = await vscode.window.showInputBox({
+        prompt: "Enter image URL",
+        placeHolder: "e.g., https://example.com/image.jpg",
+      });
+
+      if (!imageUrl) return;
+
+      const image = generateImage(altText, imageUrl);
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, image);
+      });
+    }
+  );
+
   const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
     "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
@@ -182,6 +213,7 @@ export function activate(context: vscode.ExtensionContext) {
         const ulistMatch = line.match(/^\/ulist\s+(\d+)$/);
         const hrMatch = line.match(/^\/hr$/);
         const linkMatch = line.match(/^\/link$/);
+        const imgMatch = line.match(/^\/img$/);
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -236,6 +268,13 @@ export function activate(context: vscode.ExtensionContext) {
           const range = new vscode.Range(position, endPosition);
 
           edit.replace(range, link);
+        } else if (imgMatch) {
+          const image = generateImage("Image", "https://example.com/image.jpg");
+          const position = new vscode.Position(i, 0);
+          const endPosition = new vscode.Position(i, line.length);
+          const range = new vscode.Range(position, endPosition);
+
+          edit.replace(range, image);
         }
       }
     }
@@ -291,6 +330,10 @@ export function activate(context: vscode.ExtensionContext) {
     return `[${title}](${url})`;
   }
 
+  function generateImage(altText: string, imageUrl: string): string {
+    return `![${altText}](${imageUrl})`;
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (event.document.languageId === "markdown") {
@@ -307,6 +350,7 @@ export function activate(context: vscode.ExtensionContext) {
     unorderedListCommand,
     horizontalRuleCommand,
     hyperlinkCommand,
+    imageCommand,
     inlineCommandProcessor,
     changeDocumentSubscription
   );
