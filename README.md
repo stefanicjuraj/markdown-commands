@@ -9,6 +9,7 @@ An extension for enhanced Markdown format editing with utility commands.
 - Create and insert [unordered lists](#unordered-lists) with a specified number of items
 - Create and insert [horizontal rules](#horizontal-rule)
 - Create and insert [hyperlinks](#hyperlink)
+- Create and insert [images](#image)
 
 ## Usage
 
@@ -70,6 +71,16 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ```
 [Link Text](https://example.com)
+```
+
+### Image
+
+1. Use the slash command: `/img`
+   - You can also use the `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS) shortcuts, or run the command `Markdown: Insert Image` from the command palette.
+2. An image will be inserted at cursor position.
+
+```
+![Image](https://example.com/image.jpg)
 ```
 
 ## Installation
