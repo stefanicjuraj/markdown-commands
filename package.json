@@ -2,7 +2,7 @@
   "name": "md-commands",
   "displayName": "markdown-commands",
   "description": "An extension for enhanced Markdown format editing with utility commands.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "jurajstefanic",
   "repository": {
     "type": "git",
@@ -36,6 +36,10 @@
       {
         "command": "markdown-commands.createHorizontalRule",
         "title": "Markdown: Insert Horizontal Rule"
+      },
+      {
+        "command": "markdown-commands.createHyperlink",
+        "title": "Markdown: Insert Hyperlink"
       }
     ],
     "keybindings": [
@@ -61,6 +65,12 @@
         "command": "markdown-commands.createHorizontalRule",
         "key": "ctrl+shift+h",
         "mac": "cmd+shift+h",
+        "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
+        "command": "markdown-commands.createHyperlink",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
         "when": "editorTextFocus && editorLangId == markdown"
       }
     ]
