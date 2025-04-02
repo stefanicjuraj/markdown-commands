@@ -19,15 +19,7 @@ An extension for enhanced Markdown format editing with utility commands.
    - You can also use the `Ctrl+Shift+T` (Windows/Linux) / `Cmd+Shift+T` (macOS) shortcuts, or run the command `Markdown: Create Table` from the command palette.
 2. A formatted Markdown table will be inserted at cursor position.
 
-```
-| Column 1 | Column 2 | Column 3 |
-| -------- | -------- | -------- |
-|          |          |          |
-|          |          |          |
-|          |          |          |
-|          |          |          |
-|          |          |          |
-```
+<img src="./assets/gifs/table.gif" width="300px" />
 
 ### Ordered Lists
 
@@ -35,11 +27,7 @@ An extension for enhanced Markdown format editing with utility commands.
    - You can also use the `Ctrl+Shift+O` (Windows/Linux) / `Cmd+Shift+O` (macOS) shortcuts, or run the command `Markdown: Create Ordered List` from the command palette.
 2. An ordered list will be inserted at cursor position.
 
-```
-1. Item 1
-2. Item 2
-3. Item 3
-```
+<img src="./assets/gifs/ordered-list.gif" width="150px" />
 
 ### Unordered Lists
 
@@ -47,11 +35,7 @@ An extension for enhanced Markdown format editing with utility commands.
    - You can also use the `Ctrl+Shift+U` (Windows/Linux) / `Cmd+Shift+U` (macOS) shortcuts, or run the command `Markdown: Create Unordered List` from the command palette.
 2. An unordered list will be inserted at cursor position.
 
-```
-- Item 1
-- Item 2
-- Item 3
-```
+<img src="./assets/gifs/unordered-list.gif" width="150px" />
 
 ### Horizontal Rule
 
