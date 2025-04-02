@@ -8,6 +8,7 @@ An extension for enhanced Markdown format editing with utility commands.
 - Create and insert [ordered lists](#ordered-lists) with a specified number of items
 - Create and insert [unordered lists](#unordered-lists) with a specified number of items
 - Create and insert [horizontal rules](#horizontal-rule)
+- Create and insert [hyperlinks](#hyperlink)
 
 ## Usage
 
@@ -59,6 +60,16 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ```
 ---
+```
+
+### Hyperlink
+
+1. Use the slash command: `/link`
+   - You can also use the `Ctrl+Shift+L` (Windows/Linux) / `Cmd+Shift+L` (macOS) shortcuts, or run the command `Markdown: Insert Hyperlink` from the command palette.
+2. A hyperlink will be inserted at cursor position.
+
+```
+[Link Text](https://example.com)
 ```
 
 ## Installation
