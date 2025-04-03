@@ -2,7 +2,7 @@
   "name": "md-commands",
   "displayName": "markdown-commands",
   "description": "An extension for enhanced Markdown format editing with utility commands.",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "publisher": "jurajstefanic",
   "icon": "assets/images/icon.png",
   "repository": {
@@ -58,6 +58,10 @@
       {
         "command": "markdown-commands.createImage",
         "title": "Markdown: Insert Image"
+      },
+      {
+        "command": "markdown-commands.createCodeBlock",
+        "title": "Markdown: Insert Code Block"
       }
     ],
     "keybindings": [
@@ -95,6 +99,12 @@
         "command": "markdown-commands.createImage",
         "key": "ctrl+shift+i",
         "mac": "cmd+shift+i",
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
+      },
+      {
+        "command": "markdown-commands.createCodeBlock",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
         "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       }
     ]
