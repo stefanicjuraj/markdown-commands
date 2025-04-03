@@ -2,7 +2,7 @@
   "name": "md-commands",
   "displayName": "markdown-commands",
   "description": "An extension for enhanced Markdown format editing with utility commands.",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "publisher": "jurajstefanic",
   "icon": "assets/images/icon.png",
   "repository": {
@@ -17,10 +17,23 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onLanguage:mdx"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "mdx",
+        "extensions": [
+          ".mdx"
+        ],
+        "aliases": [
+          "MDX",
+          "mdx"
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "markdown-commands.createTable",
@@ -52,37 +65,37 @@
         "command": "markdown-commands.createTable",
         "key": "ctrl+shift+t",
         "mac": "cmd+shift+t",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       },
       {
         "command": "markdown-commands.createOrderedList",
         "key": "ctrl+shift+o",
         "mac": "cmd+shift+o",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       },
       {
         "command": "markdown-commands.createUnorderedList",
         "key": "ctrl+shift+u",
         "mac": "cmd+shift+u",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       },
       {
         "command": "markdown-commands.createHorizontalRule",
         "key": "ctrl+shift+h",
         "mac": "cmd+shift+h",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       },
       {
         "command": "markdown-commands.createHyperlink",
         "key": "ctrl+shift+l",
         "mac": "cmd+shift+l",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       },
       {
         "command": "markdown-commands.createImage",
         "key": "ctrl+shift+i",
         "mac": "cmd+shift+i",
-        "when": "editorTextFocus && editorLangId == markdown"
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == mdx)"
       }
     ]
   },
