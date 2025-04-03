@@ -4,12 +4,14 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ## Features
 
-- Create and insert [tables](#tables) with a simple command
-- Create and insert [ordered lists](#ordered-lists) with a specified number of items
-- Create and insert [unordered lists](#unordered-lists) with a specified number of items
-- Create and insert [horizontal rules](#horizontal-rule)
-- Create and insert [hyperlinks](#hyperlink)
-- Create and insert [images](#image)
+Create and insert Markdown formatted elements:
+
+- [Tables](#tables)
+- [Ordered lists](#ordered-lists)
+- [Unordered lists](#unordered-lists)
+- [Horizontal rules](#horizontal-rule)
+- [Hyperlinks](#hyperlink)
+- [Images](#image)
 
 ## Usage
 
@@ -55,7 +57,7 @@ An extension for enhanced Markdown format editing with utility commands.
 
 **Command palette:** `Markdown: Create Unordered List`
 
-### Horizontal Rule
+### Horizontal Rules
 
  `/hr`
 
@@ -67,7 +69,7 @@ An extension for enhanced Markdown format editing with utility commands.
 
 **Command palette:** `Markdown: Insert Horizontal Rule`
 
-### Hyperlink
+### Hyperlinks
 
  `/link`
 
@@ -79,7 +81,7 @@ An extension for enhanced Markdown format editing with utility commands.
 
 **Command palette:** `Markdown: Insert Hyperlink`
 
-### Image
+### Images
 
  `/img`
 
@@ -93,4 +95,4 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ## Installation
 
-- Install from [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=jurajstefanic.md-commands)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=jurajstefanic.md-commands)
