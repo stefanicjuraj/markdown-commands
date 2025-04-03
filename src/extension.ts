@@ -216,6 +216,41 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const blockquoteCommand = vscode.commands.registerCommand(
+    "markdown-commands.createBlockquote",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const lines = await vscode.window.showInputBox({
+        prompt: "Enter number of lines (optional)",
+        placeHolder: "e.g., 3 (default is 1)",
+      });
+
+      let numLines = 1;
+      if (lines) {
+        const parsed = parseInt(lines);
+        if (!isNaN(parsed) && parsed > 0) {
+          numLines = parsed;
+        } else {
+          vscode.window.showErrorMessage(
+            "Please enter a valid positive number for lines"
+          );
+          return;
+        }
+      }
+
+      const blockquote = generateBlockquote(numLines);
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, blockquote);
+      });
+    }
+  );
+
   const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
     "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
@@ -237,6 +272,9 @@ export function activate(context: vscode.ExtensionContext) {
         const linkMatch = line.match(/^\/link$/);
         const imgMatch = line.match(/^\/img$/);
         const codeBlockMatch = line.match(/^\/(?:codeblock|cb)(?:\s+(.+))?$/);
+        const blockquoteMatch = line.match(
+          /^\/(?:blockquote|bq)(?:\s+(\d+))?$/
+        );
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -331,6 +369,46 @@ export function activate(context: vscode.ExtensionContext) {
                 });
               });
           }
+        } else if (blockquoteMatch) {
+          if (blockquoteMatch[1]) {
+            const numLines = parseInt(blockquoteMatch[1]);
+
+            if (!isNaN(numLines) && numLines > 0) {
+              const blockquote = generateBlockquote(numLines);
+              const position = new vscode.Position(i, 0);
+              const endPosition = new vscode.Position(i, line.length);
+              const range = new vscode.Range(position, endPosition);
+
+              edit.replace(range, blockquote);
+            }
+          } else {
+            const position = new vscode.Position(i, 0);
+            const endPosition = new vscode.Position(i, line.length);
+            const range = new vscode.Range(position, endPosition);
+
+            edit.replace(range, "");
+
+            vscode.window
+              .showInputBox({
+                prompt: "Enter number of lines (optional)",
+                placeHolder: "e.g., 3 (default is 1)",
+              })
+              .then((lines) => {
+                let numLines = 1;
+                if (lines) {
+                  const parsed = parseInt(lines);
+                  if (!isNaN(parsed) && parsed > 0) {
+                    numLines = parsed;
+                  }
+                }
+
+                const blockquote = generateBlockquote(numLines);
+
+                textEditor.edit((editBuilder) => {
+                  editBuilder.insert(position, blockquote);
+                });
+              });
+          }
         }
       }
     }
@@ -394,6 +472,14 @@ export function activate(context: vscode.ExtensionContext) {
     return "```" + language + "\n\n```\n";
   }
 
+  function generateBlockquote(lines: number): string {
+    let blockquote = "";
+    for (let i = 0; i < lines; i++) {
+      blockquote += "> \n";
+    }
+    return blockquote;
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (
@@ -415,6 +501,7 @@ export function activate(context: vscode.ExtensionContext) {
     hyperlinkCommand,
     imageCommand,
     codeBlockCommand,
+    blockquoteCommand,
     inlineCommandProcessor,
     changeDocumentSubscription
   );
