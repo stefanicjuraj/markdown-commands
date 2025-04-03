@@ -15,57 +15,81 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ### Tables
 
-1. Use the slash command: `/table <columns> <rows>`. For example: `/table 3 5`
-   - You can also use the `Ctrl+Shift+T` (Windows/Linux) / `Cmd+Shift+T` (macOS) shortcuts, or run the command `Markdown: Create Table` from the command palette.
-2. A formatted Markdown table will be inserted at cursor position.
+```
+/table <columns> <rows>
+```
 
 <img src="./assets/gifs/table.gif" width="300px" />
 
+<br />
+
+**Shortcut:** `Ctrl+Shift+T` (Windows/Linux) / `Cmd+Shift+T` (macOS)
+
+**Command palette:** `Markdown: Create Table`
+
 ### Ordered Lists
 
-1. Use the slash command: `/olist <items>`. For example: `/olist 3`
-   - You can also use the `Ctrl+Shift+O` (Windows/Linux) / `Cmd+Shift+O` (macOS) shortcuts, or run the command `Markdown: Create Ordered List` from the command palette.
-2. An ordered list will be inserted at cursor position.
+```
+/olist <number_of_items>
+```
 
 <img src="./assets/gifs/ordered-list.gif" width="150px" />
 
+<br />
+
+**Shortcut:** `Ctrl+Shift+O` (Windows/Linux) / `Cmd+Shift+O` (macOS)
+
+**Command palette:** `Markdown: Create Ordered List`
+
 ### Unordered Lists
 
-1. Use the slash command: `/ulist <items>`. For example: `/ulist 3`
-   - You can also use the `Ctrl+Shift+U` (Windows/Linux) / `Cmd+Shift+U` (macOS) shortcuts, or run the command `Markdown: Create Unordered List` from the command palette.
-2. An unordered list will be inserted at cursor position.
+```
+/ulist <number_of_items>
+```
 
 <img src="./assets/gifs/unordered-list.gif" width="150px" />
 
+<br />
+
+**Shortcut:** `Ctrl+Shift+U` (Windows/Linux) / `Cmd+Shift+U` (macOS)
+
+**Command palette:** `Markdown: Create Unordered List`
+
 ### Horizontal Rule
 
-1. Use the slash command: `/hr`
-   - You can also use the `Ctrl+Shift+H` (Windows/Linux) / `Cmd+Shift+H` (macOS) shortcuts, or run the command `Markdown: Insert Horizontal Rule` from the command palette.
-2. A horizontal rule will be inserted at cursor position.
+`/hr`
 
 ```
 ---
 ```
 
+**Shortcut:** `Ctrl+Shift+H` (Windows/Linux) / `Cmd+Shift+H` (macOS)
+
+**Command palette:** `Markdown: Insert Horizontal Rule`
+
 ### Hyperlink
 
-1. Use the slash command: `/link`
-   - You can also use the `Ctrl+Shift+L` (Windows/Linux) / `Cmd+Shift+L` (macOS) shortcuts, or run the command `Markdown: Insert Hyperlink` from the command palette.
-2. A hyperlink will be inserted at cursor position.
+ `/link`
 
 ```
 [Link Text](https://example.com)
 ```
 
+**Shortcut:** `Ctrl+Shift+L` (Windows/Linux) / `Cmd+Shift+L` (macOS)
+
+**Command palette:** `Markdown: Insert Hyperlink`
+
 ### Image
 
-1. Use the slash command: `/img`
-   - You can also use the `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS) shortcuts, or run the command `Markdown: Insert Image` from the command palette.
-2. An image will be inserted at cursor position.
+ `/img`
 
 ```
 ![Image](https://example.com/image.jpg)
 ```
+
+**Shortcut:** `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS)
+
+**Command palette:** `Markdown: Insert Image`
 
 ## Installation
 
