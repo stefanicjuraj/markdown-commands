@@ -13,6 +13,7 @@ Create and insert Markdown formatted elements:
 - [Hyperlinks](#hyperlinks)
 - [Images](#images)
 - [Code blocks](#code-blocks)
+- [Blockquotes](#blockquotes)
 
 ## Usage
 
@@ -104,6 +105,8 @@ Create and insert Markdown formatted elements:
 
 **Command palette:** `Markdown: Insert Image`
 
+---
+
 ### Code blocks
 
  `/codeblock`
@@ -115,6 +118,20 @@ Create and insert Markdown formatted elements:
 **Shortcut:** `Ctrl+Shift+C` (Windows/Linux) / `Cmd+Shift+C` (macOS)
 
 **Command palette:** `Markdown: Insert Code Block`
+
+---
+
+### Blockquotes
+
+ `/blockquote`
+
+ <img src="./assets/gifs/blockquote.gif" width="400px" />
+
+<br />
+
+**Shortcut:** `Ctrl+Shift+Q` (Windows/Linux) / `Cmd+Shift+Q` (macOS)
+
+**Command palette:** `Markdown: Insert Blockquote`
 
 ---
 
