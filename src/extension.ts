@@ -199,7 +199,7 @@ export function activate(context: vscode.ExtensionContext) {
     (textEditor, edit) => {
       const document = textEditor.document;
 
-      if (document.languageId !== "markdown") {
+      if (document.languageId !== "markdown" && document.languageId !== "mdx") {
         return;
       }
 
@@ -336,7 +336,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
-      if (event.document.languageId === "markdown") {
+      if (
+        event.document.languageId === "markdown" ||
+        event.document.languageId === "mdx"
+      ) {
         vscode.commands.executeCommand(
           "markdown-commands.inlineCommandProcessor"
         );
