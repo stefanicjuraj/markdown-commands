@@ -1,6 +1,6 @@
 # markdown-commands
 
-An extension for enhanced Markdown format editing with utility commands.
+An extension for enhanced Markdown format editing with utility commands. It provides slash commands, shortcuts, and command palette entries to quickly insert commonly used Markdown elements. Designed to reduce manual formatting and streamline writing workflows. Supports Markdown (`.md`) and Markdown with JSX (`.mdx`) file formats.
 
 ## Features
 
@@ -29,6 +29,8 @@ Create and insert Markdown formatted elements:
 
 **Command palette:** `Markdown: Create Table`
 
+---
+
 ### Ordered Lists
 
 ```
@@ -42,6 +44,8 @@ Create and insert Markdown formatted elements:
 **Shortcut:** `Ctrl+Shift+O` (Windows/Linux) / `Cmd+Shift+O` (macOS)
 
 **Command palette:** `Markdown: Create Ordered List`
+
+---
 
 ### Unordered Lists
 
@@ -57,6 +61,8 @@ Create and insert Markdown formatted elements:
 
 **Command palette:** `Markdown: Create Unordered List`
 
+---
+
 ### Horizontal Rules
 
  `/hr`
@@ -68,6 +74,8 @@ Create and insert Markdown formatted elements:
 **Shortcut:** `Ctrl+Shift+H` (Windows/Linux) / `Cmd+Shift+H` (macOS)
 
 **Command palette:** `Markdown: Insert Horizontal Rule`
+
+---
 
 ### Hyperlinks
 
@@ -81,6 +89,8 @@ Create and insert Markdown formatted elements:
 
 **Command palette:** `Markdown: Insert Hyperlink`
 
+---
+
 ### Images
 
  `/img`
@@ -92,6 +102,8 @@ Create and insert Markdown formatted elements:
 **Shortcut:** `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS)
 
 **Command palette:** `Markdown: Insert Image`
+
+---
 
 ## Installation
 
