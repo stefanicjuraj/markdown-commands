@@ -12,6 +12,7 @@ Create and insert Markdown formatted elements:
 - [Horizontal rules](#horizontal-rule)
 - [Hyperlinks](#hyperlink)
 - [Images](#image)
+- [Code blocks](#code-blocks)
 
 ## Usage
 
@@ -102,6 +103,18 @@ Create and insert Markdown formatted elements:
 **Shortcut:** `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS)
 
 **Command palette:** `Markdown: Insert Image`
+
+### Code blocks
+
+ `/codeblock`
+
+ <img src="./assets/gifs/code-block.gif" width="400px" />
+
+<br />
+
+**Shortcut:** `Ctrl+Shift+C` (Windows/Linux) / `Cmd+Shift+C` (macOS)
+
+**Command palette:** `Markdown: Insert Code Block`
 
 ---
 
