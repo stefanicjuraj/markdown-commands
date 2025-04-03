@@ -57,11 +57,11 @@ An extension for enhanced Markdown format editing with utility commands.
 
 ### Horizontal Rule
 
-`/hr`
+ `/hr`
 
-```
----
-```
+<img src="./assets/gifs/horizontal-rule.gif" width="150px" />
+
+<br />
 
 **Shortcut:** `Ctrl+Shift+H` (Windows/Linux) / `Cmd+Shift+H` (macOS)
 
@@ -71,9 +71,9 @@ An extension for enhanced Markdown format editing with utility commands.
 
  `/link`
 
-```
-[Link Text](https://example.com)
-```
+<img src="./assets/gifs/hyperlink.gif" width="250px" />
+
+<br />
 
 **Shortcut:** `Ctrl+Shift+L` (Windows/Linux) / `Cmd+Shift+L` (macOS)
 
@@ -83,9 +83,9 @@ An extension for enhanced Markdown format editing with utility commands.
 
  `/img`
 
-```
-![Image](https://example.com/image.jpg)
-```
+<img src="./assets/gifs/image.gif" width="250px" />
+
+<br />
 
 **Shortcut:** `Ctrl+Shift+I` (Windows/Linux) / `Cmd+Shift+I` (macOS)
 
