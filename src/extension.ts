@@ -194,6 +194,28 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const codeBlockCommand = vscode.commands.registerCommand(
+    "markdown-commands.createCodeBlock",
+    async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No active editor found");
+        return;
+      }
+
+      const language = await vscode.window.showInputBox({
+        prompt: "Enter language (optional)",
+        placeHolder: "e.g., typescript, python, javascript",
+      });
+
+      const codeBlock = generateCodeBlock(language || "");
+
+      editor.edit((editBuilder) => {
+        editBuilder.insert(editor.selection.active, codeBlock);
+      });
+    }
+  );
+
   const inlineCommandProcessor = vscode.commands.registerTextEditorCommand(
     "markdown-commands.inlineCommandProcessor",
     (textEditor, edit) => {
@@ -214,6 +236,7 @@ export function activate(context: vscode.ExtensionContext) {
         const hrMatch = line.match(/^\/hr$/);
         const linkMatch = line.match(/^\/link$/);
         const imgMatch = line.match(/^\/img$/);
+        const codeBlockMatch = line.match(/^\/(?:codeblock|cb)(?:\s+(.+))?$/);
 
         if (tableMatch) {
           const numColumns = parseInt(tableMatch[1]);
@@ -275,6 +298,39 @@ export function activate(context: vscode.ExtensionContext) {
           const range = new vscode.Range(position, endPosition);
 
           edit.replace(range, image);
+        } else if (codeBlockMatch) {
+          if (codeBlockMatch[1]) {
+            const language = codeBlockMatch[1];
+            const codeBlock = generateCodeBlock(language);
+            const position = new vscode.Position(i, 0);
+            const endPosition = new vscode.Position(i, line.length);
+            const range = new vscode.Range(position, endPosition);
+
+            edit.replace(range, codeBlock);
+          } else {
+            const position = new vscode.Position(i, 0);
+            const endPosition = new vscode.Position(i, line.length);
+            const range = new vscode.Range(position, endPosition);
+
+            edit.replace(range, "");
+
+            vscode.window
+              .showInputBox({
+                prompt: "Enter language (optional)",
+                placeHolder: "e.g., typescript, python, javascript",
+              })
+              .then((language) => {
+                if (language === undefined) {
+                  language = "";
+                }
+
+                const codeBlock = generateCodeBlock(language);
+
+                textEditor.edit((editBuilder) => {
+                  editBuilder.insert(position, codeBlock);
+                });
+              });
+          }
         }
       }
     }
@@ -334,6 +390,10 @@ export function activate(context: vscode.ExtensionContext) {
     return `![${altText}](${imageUrl})`;
   }
 
+  function generateCodeBlock(language: string): string {
+    return "```" + language + "\n\n```\n";
+  }
+
   const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
     (event) => {
       if (
@@ -354,6 +414,7 @@ export function activate(context: vscode.ExtensionContext) {
     horizontalRuleCommand,
     hyperlinkCommand,
     imageCommand,
+    codeBlockCommand,
     inlineCommandProcessor,
     changeDocumentSubscription
   );
