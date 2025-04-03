@@ -9,9 +9,9 @@ Create and insert Markdown formatted elements:
 - [Tables](#tables)
 - [Ordered lists](#ordered-lists)
 - [Unordered lists](#unordered-lists)
-- [Horizontal rules](#horizontal-rule)
-- [Hyperlinks](#hyperlink)
-- [Images](#image)
+- [Horizontal rules](#horizontal-rules)
+- [Hyperlinks](#hyperlinks)
+- [Images](#images)
 - [Code blocks](#code-blocks)
 
 ## Usage
